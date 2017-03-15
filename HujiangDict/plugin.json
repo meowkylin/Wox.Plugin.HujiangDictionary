@@ -1,0 +1,12 @@
+{
+  "ID":"C4048140D6174C2FA80592B68EC5BB31",  
+  "ActionKeyword":"hj",                    
+  "Name":"沪江日语",                        
+  "Description":"查找日语单词",   
+  "Author":"Meowkylin",                    
+  "Version":"1.2.0",                       
+  "Language":"csharp",                      
+  "Website":"http://www.meowkylin.com",         
+  "IcoPath": "Images\\HujiangDict.ico",        
+  "ExecuteFileName":"HujiangDict.dll"   
+}
