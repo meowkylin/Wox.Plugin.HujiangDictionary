@@ -34,8 +34,15 @@ namespace HujiangDict
             var html = Http.Get("http://dict.hjenglish.com/jp/jc/" + query.Search).Result;
             Document doc = NSoup.Parse.Parser.Parse(html, "http://dict.hjenglish.com/jp/jc/");
             Elements parts = doc.Select("div.jp_word_comment");
-
-            if(parts == null)
+//             Element NotFound = doc.Select("div#panel_noresult");
+//             Element VagueWord = doc.Select("div#vagueWord");
+//             if(VagueWord != null)
+//             {
+//                 getNextElement (a <ul>)
+//                 and show the words in different items
+//                 then add Enter event -> query with the selected word
+//             }
+            if(parts == null)// need to check what is "parts" when cannot find a word
             {
                 results.Add(new Result
                 {
@@ -49,12 +56,13 @@ namespace HujiangDict
             {
                 foreach (Element part in parts)
                 {
+                    var kannji = part.Select("span[title=日语单词]").First.Text();
                     var kana = part.Select("span[title=假名]").First.Text();
                     var tone = part.Select("span[title=音调]").First.Text();
                     results.Add(new Result
                     {
-                        Title = kana + tone,
-                        SubTitle = " (假名 || 音调) ",
+                        Title = kannji + " " + kana + " " + tone,
+                        SubTitle = " (单词 || 假名 || 音调) ",
                         IcoPath = icoPath
                     });
 
